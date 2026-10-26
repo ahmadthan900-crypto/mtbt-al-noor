@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}سلة المشتريات | مكتبة النور{% endblock %}
+{% block content %}
+<section class="page-banner compact-banner"><div class="container"><span class="eyebrow">خطوة أقرب إلى كتابك</span><h1>سلة <em>مشترياتك</em></h1><p>راجع اختياراتك قبل المتابعة.</p></div></section>
+<section class="container cart-layout"><div class="cart-panel"><div class="panel-heading"><h2>كتبك المختارة</h2><a class="text-link" href="/books">متابعة التسوق ←</a></div><div id="cartItems"><div class="loading-card">جارٍ تحميل السلة…</div></div></div><aside class="summary-panel"><h2>ملخص الطلب</h2><div class="summary-line"><span>المجموع الفرعي</span><b id="cartSubtotal">0.00 $</b></div><div class="summary-line"><span>الشحن</span><span>يُحدد عند التأكيد</span></div><div class="coupon-row"><input id="couponInput" maxlength="40" placeholder="رمز الخصم"><button class="btn btn-outline" id="applyCoupon">تطبيق</button></div><div id="couponMessage" class="small-message"></div><div class="summary-total"><span>الإجمالي</span><b id="cartTotal">0.00 $</b></div><a class="btn btn-primary btn-full" id="checkoutLink" href="/checkout">متابعة إلى الدفع <span>←</span></a><p class="secure-note">♧ بياناتك تُستخدم لإتمام طلبك فقط.</p></aside></section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/cart.js') }}" defer></script>{% endblock %}

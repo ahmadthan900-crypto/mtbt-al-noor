@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}إتمام الطلب | مكتبة النور{% endblock %}
+{% block content %}
+<section class="page-banner compact-banner"><div class="container"><span class="eyebrow">الخطوة الأخيرة</span><h1>أكمل <em>طلبك</em></h1><p>أدخل معلومات التواصل، واختر طريقة الدفع المناسبة لك.</p></div></section>
+<section class="container checkout-layout"><form class="checkout-panel" id="checkoutForm" enctype="multipart/form-data"><h2>معلومات صاحب الطلب</h2>
+<label class="checkout-field">الاسم الكامل<input type="text" name="customer_name" id="customerName" maxlength="120" autocomplete="name" required placeholder="اكتب اسمك الكامل"></label>
+<label class="checkout-field">رقم الهاتف للتواصل<input type="tel" name="customer_phone" id="customerPhone" maxlength="30" autocomplete="tel" required placeholder="09xxxxxxxx أو +963xxxxxxxxx"></label>
+<h2 class="checkout-subheading">طريقة الدفع</h2>
+<label class="payment-option"><input type="radio" name="payment_method" value="cod" checked><span class="payment-icon">♧</span><span><b>الدفع عند الاستلام</b><small>تدفع عند وصول طلبك.</small></span></label>
+<label class="payment-option disabled-option" id="shamCashOption"><input type="radio" name="payment_method" value="sham_cash" disabled><span class="payment-icon">▣</span><span><b>شام كاش</b><small id="shamCashShortNote">غير مفعّل حالياً.</small></span><em id="shamCashBadge">غير متاح</em></label>
+<div class="sham-cash-customer-info" id="shamCashCustomerInfo" hidden><h3>بيانات التحويل إلى شام كاش</h3><div class="sham-cash-customer-image" id="shamCashCustomerImage"></div><p><b>اسم صاحب الحساب:</b> <span id="shamCashCustomerName"></span></p><p><b>رقم الحساب:</b> <span class="sham-cash-account" id="shamCashCustomerNumber"></span></p><div class="sham-cash-customer-note" id="shamCashCustomerNote"></div>
+<label class="checkout-field">ملاحظتك أو رقم عملية التحويل (اختياري)<textarea name="payment_note" id="paymentNote" maxlength="500" rows="3" placeholder="اكتب رقم العملية أو أي ملاحظة متعلقة بالدفع"></textarea></label>
+<label class="checkout-field proof-upload-field">صورة إثبات التحويل <input type="file" name="payment_proof" id="paymentProof" accept="image/png,image/jpeg,image/webp" required><small>ارفع صورة واضحة للتحويل (PNG أو JPG أو WEBP، حتى 5 ميغابايت).</small></label><div id="proofPreview" class="proof-preview" hidden></div>
+</div>
+<div class="notice-box">بعد تأكيد الطلب سيظهر رقم طلبك ورابط لتتبّع حالته. في شام كاش، سيبقى الطلب قيد مراجعة الدفع حتى يراجعه المتجر.</div><button class="btn btn-primary btn-full" id="submitOrderButton" type="submit">تأكيد الطلب <span>←</span></button><p id="checkoutMessage" class="small-message" role="status" aria-live="polite"></p></form><aside class="summary-panel"><h2>مراجعة سريعة</h2><div id="checkoutItems"></div><div class="summary-total"><span>الإجمالي</span><b id="checkoutTotal">0.00 $</b></div><a class="text-link" href="/cart">العودة إلى السلة</a></aside></section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/checkout.js') }}" defer></script>{% endblock %}
