@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f35">
+  <meta name="description" content="مكتبة النور — كتب مختارة لكل قارئ.">
+  <title>{% block title %}مكتبة النور{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="{% if request.path == '/admin' %}admin-shell{% endif %}">
+{% if request.path != '/admin' %}<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="/"><span class="brand-mark">{% if site.logo_image %}<img src="{{ site.logo_image|e }}" alt="{{ site.site_name|e }}">{% else %}{{ site.logo_text|e }}{% endif %}</span><span><b>{{ site.site_name|e }}</b><small>{{ site.brand_tagline|e }}</small></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
+    <nav id="mainNav">
+      <a href="/">{{ site.nav_home|e }}</a><a href="/books">{{ site.nav_books|e }}</a><a href="/#categories">{{ site.nav_categories|e }}</a><a href="/#about">{{ site.nav_about|e }}</a>
+    </nav>
+    <div class="nav-actions"><a class="icon-link" id="accountNavLink" href="/account" title="معلومات الحساب">♙ <span id="accountNavLabel">معلومات الحساب</span></a><a class="cart-link" href="/cart">{{ site.nav_cart|e }} <span id="cartCount">0</span></a></div>
+  </div>
+</header>{% endif %}
+<main>{% if request.path != '/admin' and site.announcement_enabled == '1' and site.announcement_text %}<div class="container notice-box" role="status">{{ site.announcement_text|e }}</div>{% endif %}{% block content %}{% endblock %}</main>
+{% if request.path != '/admin' %}<footer class="footer"><div class="container footer-inner"><div><a class="brand footer-brand" href="/"><span class="brand-mark">{% if site.logo_image %}<img src="{{ site.logo_image|e }}" alt="{{ site.site_name|e }}">{% else %}{{ site.logo_text|e }}{% endif %}</span><span><b>{{ site.site_name|e }}</b><small>{{ site.footer_tagline|e }}</small></span></a><p>{{ site.footer_description|e }}</p></div><div class="footer-links"><a href="/books">{{ site.footer_books_link|e }}</a><a href="/cart">{{ site.footer_cart_link|e }}</a><a href="/login">{{ site.footer_login_link|e }}</a></div></div><div class="container copyright">{{ site.copyright_text|e }}</div></footer>{% endif %}
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="{{ url_for('static', filename='js/app.js') }}?v=20261022accountsession" defer></script>
+{% block scripts %}{% endblock %}
+</body></html>

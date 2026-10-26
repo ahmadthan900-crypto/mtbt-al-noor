@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}حسابي | {{ site.site_name|e }}{% endblock %}
+{% block content %}
+<section class="container" style="max-width:760px;padding-top:48px;padding-bottom:64px">
+  <div class="login-panel" style="margin-inline:auto;max-width:620px">
+    <span class="eyebrow">حسابك في مكتبة النور</span>
+    <h1 style="margin-top:12px">معلومات الحساب</h1>
+    <p id="accountMessage" class="small-message" aria-live="polite">جارٍ تحميل بيانات حسابك…</p>
+    <div id="accountDetails" hidden style="margin-top:24px;line-height:2">
+      <p><strong>الاسم:</strong> <span id="accountName"></span></p>
+      <p><strong>رقم الهاتف:</strong> <span id="accountPhone" dir="ltr"></span></p>
+      <p><strong>نوع الحساب:</strong> <span id="accountRole"></span></p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+        <button class="btn btn-dark" id="logoutButton" type="button">تسجيل الخروج</button>
+        <a class="btn btn-primary" href="/books">تصفّح الكتب</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/account.js') }}?v=20261022accountsession" defer></script>{% endblock %}

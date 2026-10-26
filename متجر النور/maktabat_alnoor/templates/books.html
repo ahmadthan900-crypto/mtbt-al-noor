@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}{{ site.nav_books|e }} | {{ site.site_name|e }}{% endblock %}
+{% block content %}
+<section class="page-banner"><div class="container"><span class="eyebrow">{{ site.books_banner_eyebrow|e }}</span><h1>{{ site.books_banner_title|e }}</h1><p>{{ site.books_banner_description|e }}</p></div></section>
+<section class="container catalog-section"><div class="catalog-toolbar"><label class="search-box"><span>⌕</span><input id="bookSearch" type="search" maxlength="100" placeholder="{{ site.books_search_placeholder|e }}"></label><select id="sortBooks" aria-label="ترتيب الكتب"><option value="newest">الأحدث</option><option value="price_asc">السعر: من الأقل</option><option value="price_desc">السعر: من الأعلى</option><option value="best">الأكثر مبيعاً</option></select></div><div class="filter-row" id="categoryFilters"><button class="filter-chip active" data-category="">الكل</button></div><p class="result-count" id="resultCount">جارٍ تحميل الكتب…</p><div class="book-grid" id="allBooks"></div><div class="pagination" id="pagination"></div></section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/books.js') }}" defer></script>{% endblock %}

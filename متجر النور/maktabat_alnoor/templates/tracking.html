@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}تتبّع الطلب #{{ order_id }} | مكتبة النور{% endblock %}
+{% block content %}<section class="page-banner compact-banner"><div class="container"><span class="eyebrow">متابعة الشحنة</span><h1>تتبّع <em>طلبك</em></h1><p>رقم الطلب المخصص لك هو <strong>#{{ order_id }}</strong>. احتفظ به عند التواصل مع المكتبة.</p></div></section>
+<section class="container tracking-layout"><article class="tracking-card"><div class="tracking-order-heading"><div><small>رقم الطلب</small><h2 id="trackingOrderNumber">#{{ order_id }}</h2></div><span id="trackingStatusBadge" class="tracking-status">جارٍ التحميل</span></div><p id="trackingMessage" class="small-message" role="status" aria-live="polite">جارٍ جلب حالة الطلب…</p><div class="tracking-steps" id="trackingSteps"></div><div class="tracking-details" id="trackingDetails"></div><a class="btn btn-primary" href="/books">العودة إلى المتجر</a></article></section>{% endblock %}
+{% block scripts %}<script>window.TRACKING_ORDER_ID={{ order_id|tojson }};</script><script src="{{ url_for('static', filename='js/tracking.js') }}" defer></script>{% endblock %}
